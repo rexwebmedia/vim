@@ -1,27 +1,64 @@
-" VIM config updated on 1 Jan 2026
+" Functionality
 set nocompatible " disable compatibility with VI, which can cause unexpected issues
-set encoding=utf-8
-set showcmd " show (partial) command in status line
-set laststatus=2 " status bar
+set encoding=utf-8 " support more characters
+set backspace=indent,eol,start " fix backspace
+set clipboard=unnamedplus " use system clipboard
+set visualbell " blink cursor on error, instead of beeping
+set confirm " instead of failing a command because of unsaved changes, ask for confirmation
+set mouse=a " enable mouse usage (all modes)
+set ttyfast " Speed up scrolling in Vim
 
+set hidden " switch buffers without saving current file first
+set noswapfile " prevents swap files from cluttering directories
+set undofile
+set undodir=~/.vim/undo// " persistent undo history across sessions
+
+" User Interface
+set number " add numbers to left side of line
+" set relativenumber " useful for navigation with counts
+set scrolloff=2 " display 5 lines above/below the cursor when scrolling
+set laststatus=2 " status bar
+set modelines=0 " turn off modelines
+set showmode " show the current mode
+set showcmd " show (partial) command in status line
+set cursorline " higlight cursor line horizontally
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+" set autowrite " automatically save before commands like :next and :make
+set background=dark
+
+" Text Editer
 set showmatch " show matching brackets
+set nowrap " warping lines (wrap/nowrap)
+set autoindent " copy indent from current line when starting new line
+set smartindent " even better autoindent (add indent after '{')
+set textwidth=80 " text width for wrapping
+set colorcolumn=+1 " column line after text width
+set expandtab     " use space instead of tab
+set softtabstop=2 " set tab to 2 spaces
+set shiftwidth=2  " set shift to 2 spaces
+set tabstop=2     " set number of spaces in tab
+set noshiftround
+set timeoutlen=1000
+
+" display different types of white spaces.
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+" Search
+set incsearch " incremental search
 set ignorecase " do case insensitive matching
 set smartcase " do smart case matching
-set incsearch " incremental search
-" set autowrite " automatically save before command
+set hlsearch " highlights search results
 
 filetype off " enable filetype detection
 filetype plugin on " enable plugins and load plugin for the detected file type
 filetype indent on " load an indent file for the detected filetype
-set backspace=indent,eol,start " backspace remove line
-set clipboard=unnamedplus
+filetype plugin indent on " enable file-type=specific plugins and indentation
 
-
-syntax on " enable syntax highlighting
-set number " add numbers to left side of line
 " set background=iceberg
-colorscheme slate
+syntax on " enable syntax highlighting
 syntax enable
+colorscheme slate
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -32,26 +69,6 @@ if has("gui_running")
     set guifont=Consolas:h12
   endif
 endif  
-
-set showmode " show the current mode
-set mouse=a " enable mouse usage (all modes)
-set cursorline " higlight cursor line horizontally
-
-set nowrap " warping lines (wrap/nowrap)
-set textwidth=100
-set tabstop=2
-set shiftwidth=2  " set shift to 2 spaces
-set softtabstop=2 " set tab to 2 spaces
-set expandtab     " use space instead of tab
-set noshiftround
-
-set autoindent " copy indent from current line when starting new line
-set smartindent " even better autoindent (add indent after '{')
-
-set visualbell " blink cursor on error, instead of beeping
-set confirm " instead of failing a command because of unsaved changes, ask for confirmation
-
-set timeoutlen=1000
 
 " press jk to goto normal mode from insert and visual mode
 inoremap jk <Esc>
