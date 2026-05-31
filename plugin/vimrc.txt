@@ -5,7 +5,6 @@ else
   let g:vim_home = expand('~/.vim')
 endif
 
-let mapleader = " " " Leader key as Spacebar
 let g:undo_dir = g:vim_home . '/undo//'
 let g:plug_dir = g:vim_home . '/plugged'
 
@@ -76,7 +75,7 @@ set timeoutlen=1000
 " ====== Filetypes & Syntax ======
 filetype plugin indent on " enable file-type=specific plugins and indentation
 syntax on " enable syntax highlighting
-" colorscheme nord
+colorscheme nord
 
 
 " ====== Custom ======
@@ -166,44 +165,6 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
-let g:netrw_keepdir = 0
-" <leader>e : Open explorer in current file's directory
-nnoremap <silent> <leader>e :Lexplore<CR>
-
-
-" ====== fzf ======
-let g:fzf_preview_window = ['right:50%']
-
-nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>l :BLines<CR>
-nnoremap <silent> <Leader>g :Rg<CR>
-nnoremap <silent> <Leader>h :History<CR>
-" open file search with Ctrl+P
-nnoremap <C-p> :Files<CR>
-" open full search with Ctrl+Shift+F
-nnoremap <C-S-f> :Rg<CR>
-
-" winget install sharkdp.fd  " install on windows
-" sudo apt install fd-find  " install on linux
-
-if executable('fd')
-  let $FZF_DEFAULT_COMMAND =
-    \ 'fd --type f --hidden --follow ' .
-    \ '--exclude .git ' .
-    \ '--exclude node_modules ' .
-    \ '--exclude vendor ' .
-    \ '--exclude storage ' .
-    \ '--exclude bootstrap/cache ' .
-    \ '--exclude public/build ' .
-    \ '--exclude dist ' .
-    \ '--exclude build'
-endif
-
-if executable('rg')
-  let $RIPGREP_CONFIG_PATH = expand('~/.ripgreprc')
-endif
-
 
 " ====== vim-plug auto install ======
 if empty(glob(g:vim_home . '/autoload/plug.vim'))
@@ -218,7 +179,5 @@ endif
 call plug#begin(g:plug_dir)
 
 Plug 'airblade/vim-gitgutter' " Git signs
-Plug 'junegunn/fzf', {'do': { -> fzf#install()} }
-Plug 'junegunn/fzf.vim'
 
 call plug#end()
